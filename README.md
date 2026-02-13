@@ -119,10 +119,14 @@ WHERE sale_date='2022-11-05';
 
 2. **Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
 ```sql
-SELECT * FROM retail_sales
+SELECT 
+     *
+FROM retail_sales
 WHERE category = 'clothing'
       AND 
-      quantity >= 4;
+      TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
+      AND
+      quantity >= 4
 ```
 
 3. **Write a SQL query to calculate the total sales (total_sale) for each category.**:
@@ -234,6 +238,7 @@ GROUP BY shift;
 ## Conclusion
 
 This project serves as a comprehensive introduction to SQL for data analysts, covering database setup, data cleaning, exploratory data analysis, and business-driven SQL queries. The findings from this project can help drive business decisions by understanding sales patterns, customer behavior, and product performance.
+
 
 
 
