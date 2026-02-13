@@ -76,7 +76,7 @@ SELECT COUNT(*) FROM retail_sales;
 SELECT COUNT(*) AS Total_sales FROM retail_sales;
 
 -- How many customer we have
-SELECT COUNT(customer_id) AS Total_sales FROM retail_sales;
+SELECT COUNT(DISTINCT customer_id) AS Total_sales FROM retail_sales;
 
 SELECT DISTINCT category FROM retail_sales; 
 
@@ -90,11 +90,16 @@ WHERE quantity > 3;
 SELECT * FROM retail_sales
 WHERE sale_date='2022-11-05';
 
--- q.2 write a SQL query to retrieve all transactions where the category is 'clothing' and the quantity sold is more than 10 in the month of Nov-2022
-SELECT * FROM retail_sales
+-- q.2 write a SQL query to retrieve all transactions where the category is 'clothing' and the quantity sold is more than 4 in the month of Nov-2022
+SELECT 
+     *
+FROM retail_sales
 WHERE category = 'clothing'
       AND 
-      quantity >= 4;
+      TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
+      AND
+      quantity >= 4
+GROUP BY category;
       
 -- q.3 write a SQL query to calculate the total sales (total_sale) for each category
 
@@ -140,7 +145,6 @@ GROUP BY year, month
 ) AS t1
 WHERE rnk = 1;
       
-     
 
 -- q.8 write a SQL query to find the top 5 customers based on the Highest total sales
 
